@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class user_profile(models.Model):
-    Email=models.EmailField(max_length=264, primary_key=True)
+    Email=models.EmailField(max_length=254, primary_key=True)
     FirstName=models.CharField(max_length=264)
     LastName=models.CharField(max_length=264)
     Password=models.CharField(max_length=264)

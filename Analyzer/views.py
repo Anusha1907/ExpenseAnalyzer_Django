@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from Analyzer.models import user_profile, general_expenses, mandatory_expenses, debts
 # Create your views here.
 
 def dashboard(request):

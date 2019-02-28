@@ -55,6 +55,12 @@
               <p>Analyze</p>
             </a>
           </li>
+           <li>
+            <a href="{% url 'analyze' %}">
+              <i class="now-ui-icons location_map-big"></i>
+              <p>Add Money to wallet</p>
+            </a>
+          </li>
           <li>
             <a href="{% url 'notification' %}">
               <i class="now-ui-icons ui-1_bell-53"></i>
@@ -75,14 +81,14 @@
           </li>
           <li>
             <a href="{% url "mandatory" %}">
-              <i class="now-ui-icons text_align-left"></i>
+              <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Mandatory Expenses</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="{% url 'AddMoney'%}">
-              <i class="now-ui-icons shopping_credit-card"></i>
-              <p>Add money to wallet</p>
+          <li>
+            <a href="{% url "logout" %}">
+              <i class="now-ui-icons text_align-left"></i>
+              <p>Logout</p>
             </a>
           </li>
         </ul>

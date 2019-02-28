@@ -7,7 +7,7 @@ def dashboard(request):
     return render(request,'examples/dashboard.html')
 
 def user(request):
-    user
+    # user
     return render(request,'examples/user.html')
 
 def summary(request):
@@ -30,3 +30,6 @@ def addExpense(request):
 
 def addMoney(request):
     return render(request,'examples/AddMoney.html')
+    
+def logout(request):
+    return render(request,'examples/login.html')

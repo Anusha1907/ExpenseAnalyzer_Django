@@ -1,7 +1,7 @@
 {% extends './base_template.html' %}
 
 {% block content %}
-
+{{ food }}
 <div class="panel-header panel-header-lg">
   <canvas id="bigDashboardChart"></canvas>
 </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="card-body">
           <div class="chart-area">
-            <canvas id="lineChartExampleWithNumbersAndGrid"></canvas>
+            <canvas id="lineChartExampleWithNumbersAndGrid" onload="updateGraphs()"></canvas>
           </div>
         </div>
         <div class="card-footer">

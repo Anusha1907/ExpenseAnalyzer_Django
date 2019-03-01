@@ -363,7 +363,7 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+          data: [0, 500, 650, 700, 1200, 1250, 1300, 1900]
         }]
       },
       options: gradientChartOptionsConfigurationWithNumbersAndGrid

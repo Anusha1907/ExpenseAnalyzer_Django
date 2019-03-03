@@ -1,6 +1,7 @@
 
 
- <!DOCTYPE html>
+
+  <!DOCTYPE html>
   {% load staticfiles %}
 <html>
 	<head>
@@ -26,21 +27,41 @@
 			<div class="inner">
 				<form method="POST">
 					{% csrf_token %}
-					<h3>Login Form</h3>
-					{{error}}
+					<h3>Registration Form</h3>
+					
+
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label for="id_first_name">First name</label>
+							<div>{{error.first_name}}</div>
+							<input type="text" class="form-control" name="first_name">
+						</div>
+						<div class="form-wrapper">
+							<label for="id_last_name">Last Name</label>
+							<div>{{error.last_name}}</div>
+							<input type="text" class="form-control" name="last_name">
+						</div>
+					</div>
+					<div class="form-wrapper">
+						<label for="id_email">Email</label><div>{{error.email}}</div>
+						<input type="text" class="form-control" name="email">
+					</div>
 					<div class="form-wrapper">
 						<label for="id_username">Username</label>
+						<div>{{error.username}}</div>
 						<input type="text" class="form-control" name="username">
 					</div>
 					<div class="form-wrapper">
-						<label for="">Password</label>
+						<label for="id_password">Password</label>
+						<div>{{error.password}}</div>
 						<input type="password" class="form-control" name="password">
 					</div>
-					<button>Login</button>
+					<button>Register Now</button>
 				</form>
-			 <a href="{% url 'register' %}">New User?REGISTER HERE</a> 
+			<a href="{% url 'login' %}">Already an User?Login</a>
+			</div>
 		</div>
+			<p>bfhbfh</p>
 		
 	</body>
-	<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

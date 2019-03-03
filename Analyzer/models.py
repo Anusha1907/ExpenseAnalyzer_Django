@@ -1,18 +1,29 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class user_profile(models.Model):
-    Email=models.EmailField(max_length=254, primary_key=True)
-    FirstName=models.CharField(max_length=264)
-    LastName=models.CharField(max_length=264)
-    Password=models.CharField(max_length=264)
-    PhoneNo=models.IntegerField()
-    Wallet=models.IntegerField()
-    frequent_wallet_addition_amount=models.IntegerField()
-    amount_to_be_added=models.IntegerField()
+    # Email=models.EmailField(max_length=254, primary_key=True)
+    # FirstName=models.CharField(max_length=264)
+    # LastName=models.CharField(max_length=264)
+    # Password=models.CharField(max_length=264)
+    # PhoneNo=models.IntegerField(null=True)
+    # Wallet=models.IntegerField(null=True)
+    # frequent_wallet_addition_amount=models.IntegerField(null=True)
+    # amount_to_be_added=models.IntegerField(null=True)
+      user=models.OneToOneField(User,on_delete=models.PROTECT)
+      PhoneNo=models.IntegerField(null=True)
+      Wallet=models.IntegerField(null=True)
+      frequent_wallet_addition_amount=models.IntegerField(null=True)
+      amount_to_be_added=models.IntegerField(null=True)
 
+<<<<<<< HEAD
 
+=======
+      def __str__(self):
+          return self.user.username
+>>>>>>> e7a2d5663af928a15125ede8c50eb893edfc9ed4
 
 class general_expenses(models.Model):
     T_id=models.IntegerField(primary_key=True)
@@ -31,7 +42,12 @@ class general_expenses(models.Model):
     category=models.IntegerField(choices=categories)
     remarks=models.CharField(max_length=264)
 
+<<<<<<< HEAD
 
+=======
+    def __str__(self):
+        return self.T_id
+>>>>>>> e7a2d5663af928a15125ede8c50eb893edfc9ed4
 
 class mandatory_expenses(models.Model):
     T_id=models.IntegerField(primary_key=True)
@@ -48,7 +64,12 @@ class mandatory_expenses(models.Model):
     )
     category=models.IntegerField(choices=categories)
     remarks=models.CharField(max_length=264)
+<<<<<<< HEAD
 
+=======
+    def __str__(self):
+        return self.T_id
+>>>>>>> e7a2d5663af928a15125ede8c50eb893edfc9ed4
 
 class debts(models.Model):
     T_id=models.IntegerField(primary_key=True)
@@ -57,4 +78,13 @@ class debts(models.Model):
     reciever=models.CharField(max_length=264)
     remarks=models.CharField(max_length=264)
     Deadline=models.DateField()
+<<<<<<< HEAD
     date_time=models.DateTimeField(auto_now=True)
+=======
+    def __str__(self):
+        return self.T_id
+
+class notifications(models.Model):
+    N_id=models.IntegerField(primary_key=True)
+    Email=models.ForeignKey
+>>>>>>> e7a2d5663af928a15125ede8c50eb893edfc9ed4

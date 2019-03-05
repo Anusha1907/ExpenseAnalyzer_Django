@@ -6,13 +6,14 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import UserCreationForm
 from Analyzer.forms import registerform,loginform
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.db.models import Sum
-
 # Create your views here.
 
 
 
 def dashboard(request):
+<<<<<<< HEAD
     userr=User.objects.filter(username=request.user);
     # for i in userr:
     #     id=i.id
@@ -57,6 +58,15 @@ def dashboard(request):
         if all['amount__sum'] is not None:
             allExpense[i-1]=all['amount__sum']
     return render(request,'examples/dashboard.html',{'food':foodData, 'travel' : travelData , 'Groceries' : groceriesData , 'Electronics' : electronicsData , 'Clothing' : clothData , 'Household' : houseData , 'Other' : otherData, 'all' : allExpense})
+=======
+    # username=request.session['username']
+    userr=User.objects.filter(username=request.session['username'])
+    for u in userr:
+        id=u.id
+    return HttpResponse(id)
+    # print(request.session['username'])
+    # return render(request,'examples/dashboard.html')
+>>>>>>> 85eb6635c59b52100f1f269e3da3dcdf7f30d7a5
 
 def user(request):
     user=user_profile.objects.filter(Email='nish0349@gmail.com')
@@ -85,22 +95,33 @@ def addExpense(request):
 
 def addMoney(request):
     return render(request,'examples/AddMoney.html')
+<<<<<<< HEAD
 
 def logout_view(request):
     print(request)
     logout(request)
+=======
+
+def logout(request):
+    try:
+        del request.session['username']
+        print("hiudhdue")
+    except Keyerror:
+        pass
+>>>>>>> 85eb6635c59b52100f1f269e3da3dcdf7f30d7a5
     return HttpResponseRedirect(reverse('login'))
+
+
 
 def register(request):
     if request.method=="POST":
        form=registerform(request.POST)
        print(request.POST)
-       print("hii")
        if form.is_valid():
            user=form.save()
-           user.set_password(user.password)
+           # user.set_password(user.password)
            user.save()
-           return render(request,'examples/dashboard.html')
+           return HttpResponseRedirect(reverse('login'))
        else:
            print(form.errors)
            error=form.errors
@@ -115,9 +136,13 @@ def login(request):
     if request.method=="POST":
         username=request.POST['username']
         password=request.POST['password']
+        print(username)
         print(password)
-        user=authenticate(username=username,password=password)
+        user=User.objects.get(username=username,password=password)
+        print(user)
         if user:
+            print(user)
+            request.session['username']=username
             return HttpResponseRedirect(reverse('dashboard'))
         else:
             error="Invalid Credentials"

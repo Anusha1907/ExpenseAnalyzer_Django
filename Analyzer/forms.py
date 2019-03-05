@@ -63,18 +63,6 @@ class registerform(forms.ModelForm):
 
      #    return cleaned_data
 
-     def clean_password(self):
-        cleaned_data = self.cleaned_data
-        password = cleaned_data.get('password')
-
-        if not len(password)>=6:
-            raise forms.ValidationError('Password is too short.')
-        elif len(password)>=30:
-            raise forms.ValidationError('Password is too long')
-        else:
-            cleaned_data['password'] = password
-
-        return cleaned_data       
   
 
 class loginform(forms.ModelForm):

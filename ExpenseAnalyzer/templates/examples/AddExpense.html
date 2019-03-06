@@ -1,5 +1,29 @@
 {% extends './base_template.html'%}
 
 {% block content %}
-
+  {% load staticfiles %}
+		<!-- <link rel="stylesheet" href="{% static "assets/css/style.css" %}"> -->
+<div style="margin: 10%">
+<form method="POST">
+	{% csrf_token %}
+	<h3>Add Expense</h3>
+					{{error}}
+					{{message}}
+					<div class="form-wrapper">
+						<label for="id_amount">Amount</label>
+						<!-- <input type="text" class="form-control" name="amount"> -->
+						{{form.amount}}
+					</div><br>
+					<div class="form-wrapper">
+						<label for="id_category">Category</label>
+					{{form.category}}
+					</div><br>
+					<div class="form-wrapper">
+						<label for="id_remarks">Remarks</label>
+						<!-- <input type="text" class="form-control" name="remarks"><br> -->
+						{{form.remarks}}
+					</div>
+					<button>Add Expense</button>
+</form>
+</div>
 {% endblock %}

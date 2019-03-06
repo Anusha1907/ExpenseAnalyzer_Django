@@ -22,8 +22,8 @@ class user_profile(models.Model):
           return self.user.username
 
 class general_expenses(models.Model):
-    T_id=models.IntegerField(primary_key=True)
-    Email=models.ForeignKey(user_profile,  on_delete=models.CASCADE,)
+    T_id=models.AutoField(primary_key=True)
+    userid=models.ForeignKey(User,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
     categories=(
     (1,'Food9'),
@@ -41,7 +41,7 @@ class general_expenses(models.Model):
         return self.T_id
 
 class mandatory_expenses(models.Model):
-    T_id=models.IntegerField(primary_key=True)
+    T_id=models.AutoField(primary_key=True)
     Email=models.ForeignKey(user_profile, on_delete=models.CASCADE,)
     amount=models.IntegerField()
     categories=(
@@ -59,7 +59,7 @@ class mandatory_expenses(models.Model):
         return self.T_id
 
 class debts(models.Model):
-    T_id=models.IntegerField(primary_key=True)
+    T_id=models.AutoField(primary_key=True)
     Email=models.ForeignKey(user_profile,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
     reciever=models.CharField(max_length=264)
@@ -69,5 +69,5 @@ class debts(models.Model):
         return self.T_id
 
 class notifications(models.Model):
-    N_id=models.IntegerField(primary_key=True)
+    N_id=models.AutoField(primary_key=True)
     Email=models.ForeignKey

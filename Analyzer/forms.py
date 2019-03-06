@@ -84,3 +84,9 @@ class loginform(forms.ModelForm):
      	model=User
      	fields=('username','password')
 
+class generalexpensesform(forms.ModelForm):
+
+	 class Meta:
+	 	model=general_expenses
+	 	# fields=('userid','amount','category','remarks')
+	 	exclude = ["userid","T_id"]

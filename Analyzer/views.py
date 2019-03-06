@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from Analyzer.models import user_profile, general_expenses, mandatory_expenses, debts
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.forms import UserCreationForm
-from Analyzer.forms import registerform,loginform
+from Analyzer.forms import registerform,loginform,generalexpensesform
 from django.urls import reverse
 from django.contrib.auth.models import User
 # Create your views here.
@@ -13,9 +13,8 @@ def dashboard(request):
     userr=User.objects.filter(username=request.session['username'])
     for u in userr:
         id=u.id
-    return HttpResponse(id)
-    # print(request.session['username'])
-    # return render(request,'examples/dashboard.html')
+    print(request.session['username'])
+    return render(request,'examples/dashboard.html')
 
 def user(request):
     # user
@@ -37,6 +36,28 @@ def notification(request):
     return render(request,'examples/notification.html')
 
 def addExpense(request):
+    if request.method=="POST":
+       form=generalexpensesform(request.POST)
+       userr=User.objects.filter(username=request.session['username'])
+       for u in userr:
+           id=u.id
+       if form.is_valid():
+           user=form.save(commit=False)
+           user.userid_id=id
+           user.save()
+           message="Successfully Added"
+           form=generalexpensesform()
+           return render(request,'examples/AddExpense.html',{'form':form,'message':message})
+       else:
+           print(form.errors)
+           error=form.errors
+           return render(request,'examples/AddExpense.html',{'error':error})
+    else:
+        form=generalexpensesform()
+        print(form)
+        return render(request,'examples/AddExpense.html',{'form':form})
+
+
     return render(request,'examples/AddExpense.html')
 
 def addMoney(request):

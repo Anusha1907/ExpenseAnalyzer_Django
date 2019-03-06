@@ -66,7 +66,17 @@ def user(request):
     return render(request,'examples/user.html',context)
 
 def summary(request):
-    return render(request,'examples/summary.html')
+    Date_spentodrer=general_expenses.objects.order_by('date_time')
+    Amount_order=general_expenses.objects.order_by('amount')
+    Category_order=general_expenses.objects.order_by('category')
+    total= [0, 0, 0, 0, 0, 0,0,0,0,0]
+    for i in range(0,9):
+        for data in Category_order :
+            if data.category==i:
+                 total[i]=total[i]+data.amount
+
+    summar_dict={'Date':Date_spentodrer,'amount':Amount_order,'category':Category_order,'total':total}
+    return render(request,'examples/summary.html',context=summar_dict)
 
 def debts(request):
     return render(request,'examples/debts.html')

@@ -1,5 +1,132 @@
 {% extends './base_template.html' %}
 
 {% block content %}
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:hover {background-color: #ddd;}
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2c2c2c;
+  color: white;
+}
+.button {
+  background-color: #f44336; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+</style>
 
+<script>function ID(){document.getElementById('T_ID').style.visibility='visible';document.getElementById('T_ID').style.display='block';document.getElementById('amount').style.display='none';document.getElementById('category').style.display='none'}
+function amount(){document.getElementById('amount').style.visibility='visible';document.getElementById('amount').style.display='block';document.getElementById('T_ID').style.display='none';document.getElementById('category').style.display='none'}
+function category(){
+document.getElementById('category').style.display='block';document.getElementById('amount').style.display='none';document.getElementById('T_ID').style.display='none'}
+</script><br /><br /><br /><br />
+
+	<button class="button" onclick="ID()">All Transactions</button>
+	<button class="button" onclick="amount()">Sort by amount</button>
+	<button class="button" onclick="category()">Sort by category</button>
+       <div style="visibility: hidden; display:none " id="T_ID">
+
+         {% if Date %}
+	       <table id="customers">
+	       	<tr><th >Date spent on</th>
+	       	<th>Amount</th>
+	       	<th>Category</th>
+	       	<th >remarks</th></tr>
+		   {% for data in Date %}
+
+		 	     <tr>
+		 	       <td>{{data.T_id}}</td>
+		 	       <td>{{data.amount}}</td>
+		 	       <td>{{data.category}}</td>
+		 	       <td>{{data.remarks}}</td>
+		 	   </tr>
+
+		    {% endfor %}
+	        </table>
+	     {% endif %}
+
+	 </div>
+	 <div style="visibility: hidden; display:none" id="amount">
+
+         {% if amount %}
+	       <table id="customers">
+	       	<tr><th >ID</th>
+	       	<th>Amount</th>
+	       	<th>Category</th>
+	       	<th >remarks</th></tr>
+		   {% for data in amount %}
+
+		 	     <tr>
+		 	       <td>{{data.T_id}}</td>
+		 	       <td>{{data.amount}}</td>
+		 	       <td>{{data.category}}</td>
+		 	       <td>{{data.remarks}}</td>
+		 	   </tr>
+
+		    {% endfor %}
+	        </table>
+	     {% endif %}
+
+	 </div>
+
+	 <div style="visibility: visible; display:block" id="category">
+
+
+	       <table id="customers">
+	       	<tr>
+	       		<th>Category</th>
+	       		<th>Amount spent</th>
+	       	</tr>
+	       	<tr>
+	            <td>Food</td>
+	            <td>{{total.1}}</td>
+	         </tr>
+	         <tr>
+	            <td>Travel</td>
+	            <td>{{total.2}}</td>
+	         </tr>
+	         <tr>
+	            <td>Groceries</td>
+	            <td>{{total.3}}</td>
+	         </tr>
+	         <tr>
+	            <td>Electronics</td>
+	            <td>{{total.4}}</td>
+	         </tr>
+	         <tr>
+	            <td>Clothing</td>
+	            <td>{{total.5}}</td>
+	         </tr>
+	         <tr>
+	            <td>Household</td>
+	            <td>{{total.6}}</td>
+	         </tr>
+	         <tr>
+	            <td>Others</td>
+	            <td>{{total.7}}</td>
+	         </tr>
+	        </table>
+
+	 </div>
 {% endblock %}

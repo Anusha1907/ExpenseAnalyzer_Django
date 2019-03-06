@@ -1,5 +1,116 @@
-{% extends './base_template.html'%}
+{% extends './base_template.html' %}
 
 {% block content %}
+
+
+<div class="container" style="margin:auto; margin-top:10px;">
+<h2>Analyze and Compare your expenditures</h2>
+
+<div>
+  <div class="row">
+  <h6>Categories</h6>
+  <div class="custom-select col-xs-4" style="width:200px; margin:10px; padding:10px;">
+    <form>
+      <div class="form-group">
+    <select>
+      <option value="0">Food</option>
+      <option value="1">Travel</option>
+      <option value="2">Groceries</option>
+      <option value="3">Electronics</option>
+      <option value="4">Clothing and Footwear</option>
+      <option value="5">Household</option>
+      <option value="6">Others</option>
+    </select>
+    </div>
+    <div class="form-group" style="float:right">
+      <label for="from">From</label>
+    <input type="date" class="form-control" name="from"></input>
+    </div>
+    <div class="form-group" style="float:right">
+      <label for="to">To</label>
+    <input type="date" class="form-control" name="to"></input>
+    </div>
+    <div class="form-group" style="float:right">
+    <button type="submit" class="btn btn-primary" name="submit">Submit</Button>
+    </div>
+    </form>
+  </div>
+  <div id="graph" class="col-xs-8" style="float:right; height:600px"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</div>
+</div>
+
+</div>
+
+<script>
+  window.onload(updateGraph())
+function updateGraph() {
+
+var chart = new CanvasJS.Chart("graph", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Expenses"
+	},
+	axisY:{
+		includeZero: true
+	},
+	data: [{
+		type: "line",
+		dataPoints: [
+			{ x: 2, y: 450 },
+			{ x: 3, y: 414},
+			{ x: 4, y: 520},
+			{ y: 460 },
+			{ y: 450 },
+			{ y: 500 },
+			{ y: 480 },
+			{ y: 480 },
+			{ y: 410 },
+			{ y: 500 },
+			{ y: 480 },
+			{ y: 510 }
+		]
+	},
+  {
+		type: "line",
+		dataPoints: [
+			{ y: 550 },
+			{ y: 514},
+			{ y: 520},
+			{ y: 120 },
+			{ y: 340 },
+			{ y: 300 },
+			{ y: 290 },
+			{ y: 900 },
+			{ y: 120 },
+			{ y: 780 },
+			{ y: 890 },
+			{ y: 600 }
+		]
+	},
+  {
+		type: "line",
+		dataPoints: [
+			{ y: 580 },
+			{ y: 614},
+			{ y: 620},
+			{ y: 620 },
+			{ y: 640 },
+			{ y: 600 },
+			{ y: 290 },
+			{ y: 900 },
+			{ y: 120 },
+			{ y: 780 },
+			{ y: 890 },
+			{ y: 600 }
+		]
+	}
+  ]
+});
+chart.render();
+
+}
+</script>
 
 {% endblock %}

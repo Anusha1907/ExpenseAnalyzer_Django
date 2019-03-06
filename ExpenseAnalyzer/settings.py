@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Expense_Analyzer',
         'USER' : 'root',
-        'PASSWORD' : '1907@ASn',
+        'PASSWORD' : '',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
@@ -127,7 +127,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

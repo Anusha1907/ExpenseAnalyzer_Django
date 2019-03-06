@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from django.utils.timezone import now
+from datetime import datetime
+
 
 # Create your models here.
 
@@ -25,8 +28,9 @@ class general_expenses(models.Model):
     T_id=models.AutoField(primary_key=True)
     userid=models.ForeignKey(User,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
+    date_time=models.DateTimeField(default=datetime.now)
     categories=(
-    (1,'Food9'),
+    (1,'Food'),
     (2,'Travel'),
     (3,'Groceries'),
     (4, 'Electronics'),
@@ -35,14 +39,19 @@ class general_expenses(models.Model):
     (7, 'Other- specify in remarks'),
     )
     category=models.IntegerField(choices=categories)
-    remarks=models.CharField(max_length=264)
-
+    remarks=models.CharField(max_length=264,null=True)
     def __str__(self):
         return self.T_id
 
+
 class mandatory_expenses(models.Model):
+<<<<<<< HEAD
     T_id=models.AutoField(primary_key=True)
     Email=models.ForeignKey(user_profile, on_delete=models.CASCADE,)
+=======
+    T_id=models.IntegerField(primary_key=True)
+    user_id=models.ForeignKey(User,  on_delete=models.CASCADE,)
+>>>>>>> 616b6e38ddde2c8b3f630811ab96b4443341bf5f
     amount=models.IntegerField()
     categories=(
     (1,'Food9'),
@@ -54,20 +63,23 @@ class mandatory_expenses(models.Model):
     (7, 'Other- specify in remarks'),
     )
     category=models.IntegerField(choices=categories)
-    remarks=models.CharField(max_length=264)
+    remarks=models.CharField(max_length=264, null=True)
     def __str__(self):
         return self.T_id
 
+
 class debts(models.Model):
     T_id=models.AutoField(primary_key=True)
-    Email=models.ForeignKey(user_profile,  on_delete=models.CASCADE,)
+    user_id=models.ForeignKey(User,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
     reciever=models.CharField(max_length=264)
     remarks=models.CharField(max_length=264)
     Deadline=models.DateField()
+    date_time=models.DateTimeField(default=datetime.now)
     def __str__(self):
         return self.T_id
 
-class notifications(models.Model):
-    N_id=models.AutoField(primary_key=True)
-    Email=models.ForeignKey
+
+# class notifications(models.Model):
+#     N_id=models.AutoField(primary_key=True)
+#     Email=models.ForeignKey

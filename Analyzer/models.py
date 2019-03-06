@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from django.utils.timezone import now
+from datetime import datetime
+
 
 # Create your models here.
 
@@ -25,7 +28,7 @@ class general_expenses(models.Model):
     T_id=models.IntegerField(primary_key=True)
     user_id=models.ForeignKey(User,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
-    date_time=models.DateTimeField(auto_now=True)
+    date_time=models.DateTimeField(default=datetime.now)
     categories=(
     (1,'Food'),
     (2,'Travel'),
@@ -36,7 +39,7 @@ class general_expenses(models.Model):
     (7, 'Other- specify in remarks'),
     )
     category=models.IntegerField(choices=categories)
-    remarks=models.CharField(max_length=264)
+    remarks=models.CharField(max_length=264,null=True)
     def __str__(self):
         return self.T_id
 
@@ -55,7 +58,7 @@ class mandatory_expenses(models.Model):
     (7, 'Other- specify in remarks'),
     )
     category=models.IntegerField(choices=categories)
-    remarks=models.CharField(max_length=264)
+    remarks=models.CharField(max_length=264, null=True)
     def __str__(self):
         return self.T_id
 
@@ -67,6 +70,6 @@ class debts(models.Model):
     reciever=models.CharField(max_length=264)
     remarks=models.CharField(max_length=264)
     Deadline=models.DateField()
-    date_time=models.DateTimeField(auto_now=True)
+    date_time=models.DateTimeField(default=datetime.now)
     def __str__(self):
         return self.T_id

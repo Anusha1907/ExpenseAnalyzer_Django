@@ -13,60 +13,50 @@ from django.db.models import Sum
 
 
 def dashboard(request):
-<<<<<<< HEAD
-    userr=User.objects.filter(username=request.user);
-    # for i in userr:
-    #     id=i.id
+    userr=User.objects.filter(username=request.session['username']);
+    for i in userr:
+        id=i.id
     foodData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        food=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='1').aggregate(Sum('amount'))
+        food=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='1').aggregate(Sum('amount'))
         if food['amount__sum'] is not None:
             foodData[i-1]=food['amount__sum']
     travelData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        travel=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='2').aggregate(Sum('amount'))
+        travel=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='2').aggregate(Sum('amount'))
         if travel['amount__sum'] is not None:
             travelData[i-1]=travel['amount__sum']
     groceriesData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        groceries=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='3').aggregate(Sum('amount'))
+        groceries=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='3').aggregate(Sum('amount'))
         if groceries['amount__sum'] is not None:
             groceriesData[i-1]=groceries['amount__sum']
     electronicsData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        electronics=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='4').aggregate(Sum('amount'))
+        electronics=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='4').aggregate(Sum('amount'))
         if electronics['amount__sum'] is not None:
             electronicsData[i-1]=electronics['amount__sum']
     clothData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        cloth=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='5').aggregate(Sum('amount'))
+        cloth=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='5').aggregate(Sum('amount'))
         if cloth['amount__sum'] is not None:
             clothData[i-1]=cloth['amount__sum']
     houseData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        house=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='6').aggregate(Sum('amount'))
+        house=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='6').aggregate(Sum('amount'))
         if house['amount__sum'] is not None:
             houseData[i-1]=house['amount__sum']
     otherData=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        other=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).filter(category='7').aggregate(Sum('amount'))
+        other=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).filter(category='7').aggregate(Sum('amount'))
         if other['amount__sum'] is not None:
             otherData[i-1]=other['amount__sum']
     allExpense=[0,0,0,0,0,0,0,0,0,0,0,0]
     for i in range(1,13):
-        all=general_expenses.objects.filter(date_time__month=i).filter(user_id=3).aggregate(Sum('amount'))
+        all=general_expenses.objects.filter(date_time__month=i).filter(user_id=id).aggregate(Sum('amount'))
         if all['amount__sum'] is not None:
             allExpense[i-1]=all['amount__sum']
     return render(request,'examples/dashboard.html',{'food':foodData, 'travel' : travelData , 'Groceries' : groceriesData , 'Electronics' : electronicsData , 'Clothing' : clothData , 'Household' : houseData , 'Other' : otherData, 'all' : allExpense})
-=======
-    # username=request.session['username']
-    userr=User.objects.filter(username=request.session['username'])
-    for u in userr:
-        id=u.id
-    return HttpResponse(id)
-    # print(request.session['username'])
-    # return render(request,'examples/dashboard.html')
->>>>>>> 85eb6635c59b52100f1f269e3da3dcdf7f30d7a5
 
 def user(request):
     user=user_profile.objects.filter(Email='nish0349@gmail.com')
@@ -95,20 +85,13 @@ def addExpense(request):
 
 def addMoney(request):
     return render(request,'examples/AddMoney.html')
-<<<<<<< HEAD
 
 def logout_view(request):
-    print(request)
-    logout(request)
-=======
-
-def logout(request):
     try:
         del request.session['username']
         print("hiudhdue")
     except Keyerror:
         pass
->>>>>>> 85eb6635c59b52100f1f269e3da3dcdf7f30d7a5
     return HttpResponseRedirect(reverse('login'))
 
 

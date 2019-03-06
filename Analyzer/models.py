@@ -12,15 +12,15 @@ class user_profile(models.Model):
     frequent_wallet_addition_amount=models.IntegerField()
     amount_to_be_added=models.IntegerField()
 
-    def __str__(self):
-        return self.name
+
 
 class general_expenses(models.Model):
     T_id=models.IntegerField(primary_key=True)
     Email=models.ForeignKey(user_profile,  on_delete=models.CASCADE,)
     amount=models.IntegerField()
+    date_time=models.DateTimeField(auto_now=True)
     categories=(
-    (1,'Food9'),
+    (1,'Food'),
     (2,'Travel'),
     (3,'Groceries'),
     (4, 'Electronics'),
@@ -31,8 +31,7 @@ class general_expenses(models.Model):
     category=models.IntegerField(choices=categories)
     remarks=models.CharField(max_length=264)
 
-    def __str__(self):
-        return self.name
+
 
 class mandatory_expenses(models.Model):
     T_id=models.IntegerField(primary_key=True)
@@ -49,8 +48,7 @@ class mandatory_expenses(models.Model):
     )
     category=models.IntegerField(choices=categories)
     remarks=models.CharField(max_length=264)
-    def __str__(self):
-        return self.name
+
 
 class debts(models.Model):
     T_id=models.IntegerField(primary_key=True)
@@ -59,5 +57,4 @@ class debts(models.Model):
     reciever=models.CharField(max_length=264)
     remarks=models.CharField(max_length=264)
     Deadline=models.DateField()
-    def __str__(self):
-        return self.name
+    date_time=models.DateTimeField(auto_now=True)

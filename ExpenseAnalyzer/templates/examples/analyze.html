@@ -6,11 +6,11 @@
 <div class="container" style="margin:auto; margin-top:10px;">
 <h2>Analyze and Compare your expenditures</h2>
 <p><em><strong>Analyzer</strong></em> shows you pictorially how much in each categoy you have spent. <br>
-<em><strong>Comparator</strong></em> on the other hand, lets you compare the expenditures categorically.</p>
+<em><strong>Comparator</strong></em> on the other hand, lets you compare the expenditures categorically in the form of tables.</p>
 
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'London')">Analyzer</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Comparator</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Comparator(Tabulated)</button>
 </div>
 
 <div id="London" class="tabcontent">
@@ -42,7 +42,7 @@
     </div>
     </form>
   </div>
-  <div id="graph" class="col-xs-8" style="float:right; height=300px;"></div>
+  <div id="graph" class="col-xs-8" style="float:right; height:600px"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </div>
 </div>
@@ -65,10 +65,11 @@ function openCity(evt, cityName) {
   }
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
+  updateGraph();
 }
 </script>
 <script>
-window.onload = function () {
+function updateGraph() {
 
 var chart = new CanvasJS.Chart("graph", {
 	animationEnabled: true,
@@ -105,6 +106,23 @@ var chart = new CanvasJS.Chart("graph", {
 			{ y: 120 },
 			{ y: 340 },
 			{ y: 300 },
+			{ y: 290 },
+			{ y: 900 },
+			{ y: 120 },
+			{ y: 780 },
+			{ y: 890 },
+			{ y: 600 }
+		]
+	},
+  {
+		type: "line",
+		dataPoints: [
+			{ y: 580 },
+			{ y: 614},
+			{ y: 620},
+			{ y: 620 },
+			{ y: 640 },
+			{ y: 600 },
 			{ y: 290 },
 			{ y: 900 },
 			{ y: 120 },

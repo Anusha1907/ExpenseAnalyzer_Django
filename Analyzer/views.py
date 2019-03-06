@@ -66,17 +66,27 @@ def user(request):
     return render(request,'examples/user.html',context)
 
 def summary(request):
+<<<<<<< HEAD
     userr=User.objects.filter(username=request.session['username']);
     for i in userr:
         id=i.id
     Date_spentodrer=general_expenses.objects.filter(user_id=id).order_by('date_time')
     Amount_order=general_expenses.objects.filter(user_id=id).order_by('amount')
     Category_order=general_expenses.objects.filter(user_id=id).order_by('category')
+=======
+    Date_spentodrer=general_expenses.objects.order_by('date_time')
+    Amount_order=general_expenses.objects.order_by('amount')
+    Category_order=general_expenses.objects.order_by('category')
+>>>>>>> 7f2726e13b985f2dfeb71ec65f26a68c1a9c002f
     total= [0, 0, 0, 0, 0, 0,0,0,0,0]
     for i in range(0,9):
         for data in Category_order :
             if data.category==i:
                  total[i]=total[i]+data.amount
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f2726e13b985f2dfeb71ec65f26a68c1a9c002f
     summar_dict={'Date':Date_spentodrer,'amount':Amount_order,'category':Category_order,'total':total}
     return render(request,'examples/summary.html',context=summar_dict)
 

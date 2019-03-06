@@ -19,7 +19,7 @@ from Analyzer import views
 from django.conf.urls import include
 
 urlpatterns = [
-    path('', views.dashboard, name='dashboard'),
+    path(r'',include('Analyzer.urls')),
     path('admin/', admin.site.urls),
     path('Analyzer/',include('Analyzer.urls')),
 ]
